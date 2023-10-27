@@ -26,6 +26,8 @@ const CheckBox = styled.div`
 const Text = styled.div`
 	margin-left: 0.5rem;
 	flex: 1; 
+	display: flex;
+	justify-content: space-between;
 
 	/* 체크됐을 때 보여줄 스타일 */
 	${props => props.checked &&
@@ -34,6 +36,11 @@ const Text = styled.div`
 			text-decoration: line-through;
 		`
 	}
+`;
+
+const DateText = styled.span`
+	font-size: 14px;
+	margin-right: 10px;
 `;
 
 const ChangeContent = styled.div`
@@ -62,13 +69,12 @@ const Remove = styled.div`
 `;
 
 function TodoListItem(props) {
-  const { todoList:{id, text, date, checked}, onRemove, onCheck } = props;
+  const { todoList:{id, text, date, checked}, onRemove, onCheck, } = props;
 	const [ onModal, setOnModal] = useState(false);
 
 	const handleModal = () => {
 		setOnModal(true);
 		console.log(props);
-
 	};
 
   return (
@@ -76,10 +82,16 @@ function TodoListItem(props) {
       <CheckBox checked={checked} onClick={() => { onCheck(id) }} >
         {checked ? <MdCheckCircle /> : <MdCheckCircleOutline />}
       </CheckBox>
-      <Text checked={checked}>{text}</Text>
+      <Text checked={checked}>
+				{text}
+				<DateText>{date}</DateText>
+
+			</Text>
       <ChangeContent>
-        <MdCreate onChange={handleModal}/>
-				{onModal && <TodoModal setOnModal={setOnModal} />}
+        <MdCreate 
+				onChange={handleModal} 
+				onClick={onModal && <TodoModal onModal={onModal} setOnModal={setOnModal} todoList={{todoList:{id, text, date, checked}}} />}/>
+				{/* todoList={todoList} */}
 				{props.children}
       </ChangeContent>
       <Remove onClick={() => { onRemove(id) }}>

@@ -6,6 +6,14 @@ const TodoListWrapper = styled.div`
   width: 100%;
   height: 100%;
 `;
+
+// const ListTop = styled.div`
+//   width: 100%;
+//   height: 50%;
+//   border-radius: 10px;
+//   background: #eee;
+// `;
+
 function TodoList(props) {
   const { todoLists, onRemove, onCheck } = props;
   console.log(todoLists);

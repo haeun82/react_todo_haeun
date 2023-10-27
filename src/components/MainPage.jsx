@@ -22,7 +22,7 @@ function MainPage(props) {
 	return (
 		<TodoMainWrapper>
 			<TodoInput onAdd={onAdd}></TodoInput>
-      <TodoList todoLists={todoLists} onRemove={onRemove} onCheck={onCheck} ></TodoList>
+      <TodoList todoLists={todoLists} onRemove={onRemove} onCheck={onCheck}></TodoList>
 		</TodoMainWrapper>
 	);
 }

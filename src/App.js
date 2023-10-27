@@ -4,7 +4,6 @@ import reset, { Reset } from "styled-reset";
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
-
 import MainPage from './components/MainPage';
 import { useEffect, useRef, useState } from 'react';
 
@@ -28,23 +27,29 @@ const MainTitleText = styled.p`
 
 
 function App() {
+  const today = new Date();
+  const nowYear = today.getFullYear();
+  const nowMonth = today.getMonth(); 
+  const nowDate = today.getDate();
+  const date = `${nowYear}-${(nowMonth + 1)}-${nowDate}`;
+
   const [todoLists, setTodoLists] = useState([
     {
       id: 1,
       text: 'todolist 완성하기',
-      date: new Date(),
+      date,
       checked: false
     },
     {
       id: 2,
       text: '강의 듣기',
-      date: new Date(),
+      date,
       checked: true
     },
     {
       id: 3,
       text: 'router 연습',
-      date: new Date(),
+      date,
       checked: false
     }
   ]);
@@ -77,13 +82,12 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <>
       <GlobalStyle />
       <MainTitleText>TODO LIST📌</MainTitleText>
-      <Routes>
-        <Route path='/' element={<MainPage todoLists={todoLists} onAdd={handleAdd} onRemove={handleRemove} onCheck={handleCheckBox} />}/>
-      </Routes>
-    </BrowserRouter>
+      <MainPage todoLists={todoLists} onAdd={handleAdd} onRemove={handleRemove} onCheck={handleCheckBox} />}
+    </>
+    
   );
 }
 
