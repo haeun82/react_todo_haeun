@@ -87,12 +87,10 @@ function TodoListItem(props) {
 				{text}
 				<DateText>{date}</DateText>
 			</Text>
-      <ChangeContent>
-        <MdCreate 
-				onChange={handleModal && <TodoModal onModal={onModal} setOnModal={setOnModal}/>} 
-				/>
-				{/* {onModal && <TodoModal onModal={onModal} setOnModal={setOnModal} />} */}
+      <ChangeContent  onClick={handleModal}>
+        <MdCreate/>
       </ChangeContent>
+				{onModal && <TodoModal />}
       <Remove onClick={() => { onRemove(id) }}>
         <MdRemoveCircleOutline />
       </Remove>
