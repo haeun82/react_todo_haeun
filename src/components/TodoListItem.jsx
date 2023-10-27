@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineCheckCircle, BsFillCheckCircleFill, MdCheckCircle, MdCheckCircleOutline, MdCreate, MdRemoveCircleOutline } from "react-icons/md";
 import styled, { css } from 'styled-components';
+import TodoModal from './TodoModal';
 
 const TodoListItemWrapper = styled.div`
 	padding: 1rem;
@@ -61,7 +62,15 @@ const Remove = styled.div`
 `;
 
 function TodoListItem(props) {
-  const {todo:{id, text, date, checked}} = props;
+  const { todo:{id, text, date, checked} } = props;
+	const [ onModal, setOnModal] = useState(false);
+
+	const handleModal = () => {
+		setOnModal(true);
+		console.log(props);
+
+	};
+
   return (
     <TodoListItemWrapper>
       <CheckBox checked={checked} >
@@ -69,7 +78,9 @@ function TodoListItem(props) {
       </CheckBox>
       <Text checked={checked}>{text}</Text>
       <ChangeContent>
-        <MdCreate />
+        <MdCreate onChange={handleModal}/>
+				{onModal && <TodoModal setOnModal={setOnModal} />}
+				{props.children}
       </ChangeContent>
       <Remove>
         <MdRemoveCircleOutline />
