@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import swal from 'sweetalert';
+import TodoList from './TodoList';
 
 const InputWarrper = styled.form`
   width: 100%;
@@ -37,13 +39,33 @@ const InputTextButton = styled.button`
   cursor: pointer;
 `;
 
-function TodoInput(props) {
+function TodoInput({ onAdd }) {
+  const [value, setValue] = useState('');
+
+  const handleChange = (e) => {
+		setValue(e.target.value);
+	};
+
+  const hanldeSubmit = (e) => {
+    e.preventDefault();
+
+    if (!value) {
+      swal('일정을 입력해야 등록이 가능합니다. 일정을 등록해주세요!');
+      return
+    }
+
+    onAdd(value);
+    setValue('');
+  };
+
 	return (
-		<InputWarrper>
+		<InputWarrper onSubmit={hanldeSubmit}>
 			<InputText
         placeholder='일정을 입력해주세요'
+        value={value}
+        onChange={handleChange}
       ></InputText>
-      <InputTextButton>저장</InputTextButton>
+      <InputTextButton type='submit' >저장</InputTextButton>
 		</InputWarrper>
 	);
 }

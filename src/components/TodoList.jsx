@@ -7,12 +7,12 @@ const TodoListWrapper = styled.div`
   height: 100%;
 `;
 function TodoList(props) {
-  const { todos } = props;
-  console.log(todos);
+  const { todoLists, onRemove, onCheck } = props;
+  console.log(todoLists);
   return (
     <TodoListWrapper>
-      {todos.map((todo, index) => {
-        return <TodoListItem key={todo.id} todo={todo} />
+      {todoLists.map((todoList, index) => {
+        return <TodoListItem key={todoList.id} todoList={todoList} onRemove={onRemove} onCheck={onCheck} />
       })}
     </TodoListWrapper>
   );

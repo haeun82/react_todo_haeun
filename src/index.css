@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.swal-button {
+  background-color: #fdaaaa;
+}
+.swal-button:not([disabled]):hover {
+  background-color: #fdaaaa;
+}
+
+.swal-button:active {
+  background-color: #fc9c9c;
+}

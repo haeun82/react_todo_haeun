@@ -2,9 +2,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import reset, { Reset } from "styled-reset";
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
+
 
 import MainPage from './components/MainPage';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const GlobalStyle = createGlobalStyle`
   /* reset css */
@@ -26,7 +28,7 @@ const MainTitleText = styled.p`
 
 
 function App() {
-  const [todos, setTodos] = useState([
+  const [todoLists, setTodoLists] = useState([
     {
       id: 1,
       text: 'todolist 완성하기',
@@ -36,21 +38,50 @@ function App() {
     {
       id: 2,
       text: '강의 듣기',
+      date: new Date(),
       checked: true
     },
     {
       id: 3,
       text: 'router 연습',
+      date: new Date(),
       checked: false
     }
   ]);
+
+  useEffect(() => {
+    localStorage.getItem('todoLists', JSON.stringify(todoLists));
+  }, [todoLists]);
+
+  // 추가
+  const nextId = useRef(4);
+  const handleAdd = (text) => {
+    const todoList = {
+      id: uuidv4(),
+      text,
+      date: new Date(),
+      checked: false
+    }
+
+    setTodoLists([...todoLists,todoList]);
+    nextId.current += 1; 
+  };
+
+  // 삭제
+  const handleRemove = (id) => {
+    setTodoLists(todoLists.filter(todoList => todoList.id !== id));
+  };
+
+  const handleCheckBox = (id) => {
+    setTodoLists(todoLists.map(todoList => todoList.id === id ? { ...todoList, checked: !todoList.checked } : todoList));
+  };
 
   return (
     <BrowserRouter>
       <GlobalStyle />
       <MainTitleText>TODO LIST📌</MainTitleText>
       <Routes>
-        <Route path='/' element={<MainPage todos={todos} />}/>
+        <Route path='/' element={<MainPage todoLists={todoLists} onAdd={handleAdd} onRemove={handleRemove} onCheck={handleCheckBox} />}/>
       </Routes>
     </BrowserRouter>
   );

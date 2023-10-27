@@ -18,12 +18,11 @@ const TodoMainWrapper = styled.div`
 
 
 function MainPage(props) {
-  const { todos } = props;
-  console.log(todos);
+  const { todoLists, onAdd, onRemove, onCheck } = props;
 	return (
 		<TodoMainWrapper>
-			<TodoInput></TodoInput>
-      <TodoList todos={todos}></TodoList>
+			<TodoInput onAdd={onAdd}></TodoInput>
+      <TodoList todoLists={todoLists} onRemove={onRemove} onCheck={onCheck} ></TodoList>
 		</TodoMainWrapper>
 	);
 }
