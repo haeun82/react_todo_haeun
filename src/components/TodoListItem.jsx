@@ -92,7 +92,7 @@ function TodoListItem(props) {
 				onChange={handleModal} 
 				onClick={onModal && <TodoModal onModal={onModal} setOnModal={setOnModal} todoList={{todoList:{id, text, date, checked}}} />}/>
 				{/* todoList={todoList} */}
-				{props.children}
+				{/* {props.children} */}
       </ChangeContent>
       <Remove onClick={() => { onRemove(id) }}>
         <MdRemoveCircleOutline />

@@ -64,7 +64,7 @@ function App() {
     const todoList = {
       id: uuidv4(),
       text,
-      date: new Date(),
+      date,
       checked: false
     }
 
@@ -85,7 +85,7 @@ function App() {
     <>
       <GlobalStyle />
       <MainTitleText>TODO LIST📌</MainTitleText>
-      <MainPage todoLists={todoLists} onAdd={handleAdd} onRemove={handleRemove} onCheck={handleCheckBox} />}
+      <MainPage todoLists={todoLists} onAdd={handleAdd} onRemove={handleRemove} onCheck={handleCheckBox} />
     </>
     
   );
