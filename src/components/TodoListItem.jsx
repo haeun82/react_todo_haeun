@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AiOutlineCheckCircle, BsFillCheckCircleFill, MdCheckCircle, MdCheckCircleOutline, MdCreate, MdRemoveCircleOutline } from "react-icons/md";
+import { MdCheckCircle, MdCheckCircleOutline, MdCreate, MdRemoveCircleOutline } from "react-icons/md";
 import styled, { css } from 'styled-components';
 import TodoModal from './TodoModal';
 
@@ -69,12 +69,13 @@ const Remove = styled.div`
 `;
 
 function TodoListItem(props) {
+	console.log(props);
+
   const { todoList:{id, text, date, checked}, onRemove, onCheck, } = props;
 	const [ onModal, setOnModal] = useState(false);
 
 	const handleModal = () => {
 		setOnModal(true);
-		console.log(props);
 	};
 
   return (
@@ -85,14 +86,12 @@ function TodoListItem(props) {
       <Text checked={checked}>
 				{text}
 				<DateText>{date}</DateText>
-
 			</Text>
       <ChangeContent>
         <MdCreate 
-				onChange={handleModal} 
-				onClick={onModal && <TodoModal onModal={onModal} setOnModal={setOnModal} todoList={{todoList:{id, text, date, checked}}} />}/>
-				{/* todoList={todoList} */}
-				{/* {props.children} */}
+				onChange={handleModal && <TodoModal onModal={onModal} setOnModal={setOnModal}/>} 
+				/>
+				{/* {onModal && <TodoModal onModal={onModal} setOnModal={setOnModal} />} */}
       </ChangeContent>
       <Remove onClick={() => { onRemove(id) }}>
         <MdRemoveCircleOutline />

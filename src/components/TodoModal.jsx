@@ -37,13 +37,12 @@ const TodoModalTitle = styled.input`
 `;
 
 function TodoModal(props) {
-  const { todoList:{id, text, date, checked}, setOnModal, onModal } = props;
   console.log(props); 
 
+  const { todoList:{id, text, date, checked}, setOnModal, onModal } = props;
+
   return (
-    <TodoModalWrapper setOnModal={() => {
-      return setOnModal(onModal);
-    }}>
+    <TodoModalWrapper>
       <TodoModalTop>
         <p className='top-title'>내용 수정하기</p>
       </TodoModalTop>
