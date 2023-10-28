@@ -71,7 +71,7 @@ const Remove = styled.div`
 function TodoListItem(props) {
 	console.log(props);
 
-  const { todoList:{id, text, date, checked}, onRemove, onCheck, } = props;
+  const { todoList:{id, text, date, checked}, onRemove, onCheck, onAmend } = props;
 	const [ onModal, setOnModal] = useState(false);
 
 	const handleModal = () => {
@@ -89,7 +89,7 @@ function TodoListItem(props) {
 			</Text>
       <ChangeContent>
         <MdCreate 
-				onChange={handleModal && <TodoModal onModal={onModal} setOnModal={setOnModal}/>} 
+				onChange={handleModal && <TodoModal onModal={onModal} setOnModal={setOnModal} onAmend={onAmend} />} 
 				/>
 				{/* {onModal && <TodoModal onModal={onModal} setOnModal={setOnModal} />} */}
       </ChangeContent>

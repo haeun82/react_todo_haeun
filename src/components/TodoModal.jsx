@@ -39,7 +39,7 @@ const TodoModalTitle = styled.input`
 function TodoModal(props) {
   console.log(props); 
 
-  const { todoList:{id, text, date, checked}, setOnModal, onModal } = props;
+  const { todoList:{id, text, date, checked}, setOnModal, onModal, onAmend } = props;
 
   return (
     <TodoModalWrapper>

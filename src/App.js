@@ -77,15 +77,28 @@ function App() {
     setTodoLists(todoLists.filter(todoList => todoList.id !== id));
   };
 
+  // 체크박스 
   const handleCheckBox = (id) => {
     setTodoLists(todoLists.map(todoList => todoList.id === id ? { ...todoList, checked: !todoList.checked } : todoList));
+  };
+
+  // 수정버튼
+  const [ Modal, setModal ] = useState(false);
+  const handleAmend = (id) => {
+    setModal(todoLists.filter(todoList => todoList.id === id));
   };
 
   return (
     <>
       <GlobalStyle />
       <MainTitleText>TODO LIST📌</MainTitleText>
-      <MainPage todoLists={todoLists} onAdd={handleAdd} onRemove={handleRemove} onCheck={handleCheckBox} />
+      <MainPage 
+      todoLists={todoLists} 
+      onAdd={handleAdd} 
+      onRemove={handleRemove} 
+      onCheck={handleCheckBox} 
+      onAmend={handleAmend}
+      />
     </>
     
   );
