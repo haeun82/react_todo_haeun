@@ -15,7 +15,7 @@ const TodoListWrapper = styled.div`
 // `;
 
 function TodoList(props) {
-  const { todoLists, onRemove, onCheck, onAmend , onAdd, modal, onEdit, onChange } = props;
+  const { todoLists, onRemove, onCheck,  onAdd, modal, onEdit, onClick, editTodo, onModal } = props;
   console.log(todoLists);
   return (
     <TodoListWrapper>
@@ -25,11 +25,13 @@ function TodoList(props) {
         todoList={todoList} 
         onRemove={onRemove} 
         onCheck={onCheck} 
-        onAmend={onAmend} 
+        // onAmend={onAmend} 
         onAdd={onAdd}
         modal={modal}
         onEdit={onEdit}
-        onChange={onChange}
+        // onClick={onClick}
+        editTodo={editTodo}
+        onModal={onModal}
         />
       })}
     </TodoListWrapper>

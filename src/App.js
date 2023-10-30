@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import MainPage from './components/MainPage';
 import { useEffect, useRef, useState } from 'react';
+import TodoModal from './components/TodoModal';
 
 const GlobalStyle = createGlobalStyle`
   /* reset css */
@@ -14,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   /* 글로벌(공통) 스타일 */
   body {
     background: #eeeeee;
-    position: relative;
+    /* position: relative; */
   }
 `;
 
@@ -84,24 +85,53 @@ function App() {
   };
 
   // 수정
-  const [ modal, setModal ] = useState('');
-  const handleAmend = (id, text, date, checked) => {
-    setModal(todoLists.filter(todoList => todoList.id === id ? { id, text, date, checked } : todoList));
-  };
+  // const [ modal, setModal ] = useState('');
+  // const handleAmend = (id, text, date, checked) => {
+  //   setModal(todoLists.filter(todoList => todoList.id === id ? { id, text, date, checked } : todoList));
+	// };
 
-  const [changeText, setChageText] = useState({});
+
+
+  // const [editTodo, setEditTodo] = useState({});
+  // const handleChangeText = (e) => {
+  //   setEditTodo({
+  //     ...editTodo,
+  //     text: e.target.value
+  //   });
+  // };
+
+  
+  // const handleEdit = () => {
+  //   setTodoLists(todoLists.map((todoList) => {
+  //     return todoList.id === editTodo.id ? editTodo : todoList
+  //   }));
+  // };
+
+  const [showModal, setShowModal] = useState(false);
+  const handleOpenModal = (id) => {
+    setEditTodo(todoLists.find(todoList => todoList.id === id));
+    setShowModal(true);
+  };
+  const handleCloseModal = () => {
+    setEditTodo({});
+    setShowModal(false);
+  };
+  const [editTodo, setEditTodo] = useState({});
   const handleChange = (e) => {
-    setChageText({
-      ...changeText,
+    setEditTodo({
+      ...editTodo,
       text: e.target.value
     });
   };
-
   const handleEdit = () => {
-    setTodoLists(todoLists.map((todoList) => {
-      return todoList.id === changeText.id ? changeText : todoList
-    }));
+    setTodoLists(todoLists.map((todoList) => 
+      todoList.id === editTodo.id ? editTodo : todoList
+    ));
+    handleCloseModal();
   };
+
+
+
 
 
 
@@ -114,11 +144,22 @@ function App() {
         onAdd={handleAdd} 
         onRemove={handleRemove} 
         onCheck={handleCheckBox} 
-        onAmend={handleAmend}
-        modal={modal}
+        // onAmend={handleAmend}
+        // modal={modal}
         onEdit={handleEdit}
-        onChange={handleChange}
-      />
+				// onClick={handleChangeText}
+        editTodo={editTodo}
+        onModal={handleOpenModal}
+        />
+
+      {showModal && 
+			<TodoModal
+        onCloseModal={handleCloseModal}
+        onEdit={handleEdit}
+      
+      >
+				<input type="text" value={editTodo.text} onChange={handleChange} />
+        </TodoModal> }
     </>
     
   );

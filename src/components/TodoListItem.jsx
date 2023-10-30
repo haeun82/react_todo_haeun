@@ -70,11 +70,12 @@ const Remove = styled.div`
 
 function TodoListItem(props) {
 
-  const { todoList:{id, text, date, checked}, onRemove, onCheck, onAmend, onAdd, modal, onChange, onEdit } = props;
-	const [ onModal, setOnModal] = useState(false);
+  const { todoList:{id, text, date, checked}, onRemove, onCheck,  onAdd, modal, onClick, onEdit, editTodo, onModal } = props;
+const [ showModal, setShowModal] = useState(false);
 
-	const handleModal = () => {
-		setOnModal(!onModal);
+const handleModal = () => {
+    setShowModal(!showModal);
+    onEdit(editTodo.text);
 	};
 
   return (
@@ -87,17 +88,17 @@ function TodoListItem(props) {
 				<DateText>{date}</DateText>
 			</Text>
       <ChangeContent onClick={handleModal}>
-        <MdCreate/>
+        <MdCreate  onClick={() => { onModal(id); }}/>
 				
       </ChangeContent>
       <Remove onClick={() => { onRemove(id) }}>
         <MdRemoveCircleOutline />
       </Remove>
 
-			{onModal && 
+			{/* {onModal && 
 			<TodoModal 
 				onAdd={onAdd} 
-				onAmend={onAmend} 
+				// onAmend={onAmend} 
 				id={id} 
 				text={text} 
 				date={date} 
@@ -107,8 +108,10 @@ function TodoListItem(props) {
 				onModal={onModal}
 				setOnModal={setOnModal}
 				onEdit={onEdit}
-				onChange={onChange}
-				/>}
+				// onClick={onClick}
+        editTodo={editTodo}
+
+				/>} */}
     </TodoListItemWrapper>
   );
 }
