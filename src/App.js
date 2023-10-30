@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
   /* 글로벌(공통) 스타일 */
   body {
     background: #eeeeee;
+    position: relative;
   }
 `;
 
@@ -82,12 +83,13 @@ function App() {
     setTodoLists(todoLists.map(todoList => todoList.id === id ? { ...todoList, checked: !todoList.checked } : todoList));
   };
 
-  // 수정버튼
+  // 수정
   const [ modal, setModal ] = useState('');
-  const handleAmend = (id) => {
-    setModal(todoLists.filter(todoList => todoList.id === id));
+  const handleAmend = (id, text, date) => {
+    setModal(todoLists.filter(todoList => todoList.id === id ? { id, text, date } : todoList));
     console.log(setModal);
   };
+
 
   return (
     <>

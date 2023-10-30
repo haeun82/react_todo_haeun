@@ -13,8 +13,9 @@ const TodoModalWrapper = styled.div`
   padding: 10px;
   box-sizing: border-box;
   position: fixed;
-  top: 250px;
-  left: 21%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const TodoModalTop = styled.div`
@@ -51,32 +52,29 @@ const TodoModalTitle = styled.input`
 `;
 
 const CloseButton = styled.button`
-
+  cursor: pointer;
 `;
 
 function TodoModal(props) {
 
   const { id, text, date, checked, onAmend, modal, handleModal, onModal } = props;
-  const [amendText, setAmendText] = useState('');
+  console.log(text);
+  const [amendText, setAmendText] = useState(text);
 
-  useEffect(() => {
-    setAmendText( modal && modal[0].text);
-  }, [modal]);
 
-  // const handleChange = () => {
-  //   setAmendText( modal && modal[0].text);
-  // };
-
-  // const [ onModal, setOnModal] = useState(true);
-
-	// const handleModal = () => {
-	// 	setOnModal(false);
-	// };
+  const handleChange = (e) => {
+    setAmendText(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.prventDefault();
   };
 
+  const [changeText, setChageText] = useState(text);
+
+  const handleSaveText = (e) => {
+    setChageText(e.target.value);
+  };
 
 
   return (
@@ -85,9 +83,20 @@ function TodoModal(props) {
         <p className='top-title'>수정하기</p>
       </TodoModalTop>
       <TodoModalContent>
-        <TodoModalTitle value={amendText} />
+        <TodoModalTitle 
+          type='text'
+          value={amendText} 
+          onChange={handleChange}
+        />
       </TodoModalContent>
-      <CloseButton type='submit' onClick={handleModal}>저장</CloseButton>
+      <CloseButton 
+        type='submit' 
+        onClick={handleModal}
+        value={changeText}
+        onChange={() => {
+          
+        }} 
+      >저장</CloseButton>
     </TodoModalWrapper>
   );
 }

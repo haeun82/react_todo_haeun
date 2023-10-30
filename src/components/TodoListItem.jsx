@@ -74,7 +74,7 @@ function TodoListItem(props) {
 	const [ onModal, setOnModal] = useState(false);
 
 	const handleModal = () => {
-		setOnModal(true);
+		setOnModal(!onModal);
 	};
 
   return (
@@ -88,22 +88,26 @@ function TodoListItem(props) {
 			</Text>
       <ChangeContent onClick={handleModal}>
         <MdCreate/>
-				{onModal && <TodoModal 
-					onAdd={onAdd} 
-					onAmend={onAmend} 
-					id={id} 
-					text={text} 
-					date={date} 
-					checked={checked} 
-					modal={modal} 
-					handleModal={handleModal}
-					onModal={onModal}
-				/>}
+				
       </ChangeContent>
       <Remove onClick={() => { onRemove(id) }}>
         <MdRemoveCircleOutline />
       </Remove>
-    </TodoListItemWrapper>  
+
+			{onModal && 
+			<TodoModal 
+				onAdd={onAdd} 
+				onAmend={onAmend} 
+				id={id} 
+				text={text} 
+				date={date} 
+				checked={checked} 
+				modal={modal} 
+				handleModal={handleModal}
+				onModal={onModal}
+				setOnModal={setOnModal}
+				/>}
+    </TodoListItemWrapper>
   );
 }
 
