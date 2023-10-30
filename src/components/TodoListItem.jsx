@@ -70,7 +70,7 @@ const Remove = styled.div`
 
 function TodoListItem(props) {
 
-  const { todoList:{id, text, date, checked}, onRemove, onCheck, onAmend, onAdd, modal } = props;
+  const { todoList:{id, text, date, checked}, onRemove, onCheck, onAmend, onAdd, modal, onChange, onEdit } = props;
 	const [ onModal, setOnModal] = useState(false);
 
 	const handleModal = () => {
@@ -106,6 +106,8 @@ function TodoListItem(props) {
 				handleModal={handleModal}
 				onModal={onModal}
 				setOnModal={setOnModal}
+				onEdit={onEdit}
+				onChange={onChange}
 				/>}
     </TodoListItemWrapper>
   );

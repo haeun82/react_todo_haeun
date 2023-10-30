@@ -85,10 +85,24 @@ function App() {
 
   // 수정
   const [ modal, setModal ] = useState('');
-  const handleAmend = (id, text, date) => {
-    setModal(todoLists.filter(todoList => todoList.id === id ? { id, text, date } : todoList));
-    console.log(setModal);
+  const handleAmend = (id, text, date, checked) => {
+    setModal(todoLists.filter(todoList => todoList.id === id ? { id, text, date, checked } : todoList));
   };
+
+  const [changeText, setChageText] = useState({});
+  const handleChange = (e) => {
+    setChageText({
+      ...changeText,
+      text: e.target.value
+    });
+  };
+
+  const handleEdit = () => {
+    setTodoLists(todoLists.map((todoList) => {
+      return todoList.id === changeText.id ? changeText : todoList
+    }));
+  };
+
 
 
   return (
@@ -102,6 +116,8 @@ function App() {
         onCheck={handleCheckBox} 
         onAmend={handleAmend}
         modal={modal}
+        onEdit={handleEdit}
+        onChange={handleChange}
       />
     </>
     

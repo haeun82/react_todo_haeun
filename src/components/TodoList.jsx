@@ -15,7 +15,7 @@ const TodoListWrapper = styled.div`
 // `;
 
 function TodoList(props) {
-  const { todoLists, onRemove, onCheck, onAmend , onAdd, modal } = props;
+  const { todoLists, onRemove, onCheck, onAmend , onAdd, modal, onEdit, onChange } = props;
   console.log(todoLists);
   return (
     <TodoListWrapper>
@@ -28,6 +28,8 @@ function TodoList(props) {
         onAmend={onAmend} 
         onAdd={onAdd}
         modal={modal}
+        onEdit={onEdit}
+        onChange={onChange}
         />
       })}
     </TodoListWrapper>

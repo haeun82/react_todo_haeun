@@ -57,8 +57,7 @@ const CloseButton = styled.button`
 
 function TodoModal(props) {
 
-  const { id, text, date, checked, onAmend, modal, handleModal, onModal } = props;
-  console.log(text);
+  const { id, text, date, checked, onAmend, modal, handleModal, onEdit, onChange } = props;
   const [amendText, setAmendText] = useState(text);
 
 
@@ -68,13 +67,12 @@ function TodoModal(props) {
 
   const handleSubmit = (e) => {
     e.prventDefault();
+    
   };
 
-  const [changeText, setChageText] = useState(text);
 
-  const handleSaveText = (e) => {
-    setChageText(e.target.value);
-  };
+  // const handleSaveText = (e) => {
+  // };
 
 
   return (
@@ -92,10 +90,6 @@ function TodoModal(props) {
       <CloseButton 
         type='submit' 
         onClick={handleModal}
-        value={changeText}
-        onChange={() => {
-          
-        }} 
       >저장</CloseButton>
     </TodoModalWrapper>
   );

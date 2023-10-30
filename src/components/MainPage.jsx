@@ -24,7 +24,7 @@ const ListTop = styled.div`
 
 
 function MainPage(props) {
-  const { todoLists, onAdd, onRemove, onCheck, onAmend, modal } = props;
+  const { todoLists, onAdd, onRemove, onCheck, onAmend, modal, onEdit, onChange } = props;
 	return (
 		<TodoMainWrapper>
 			<TodoInput onAdd={onAdd}></TodoInput>
@@ -35,6 +35,8 @@ function MainPage(props) {
 				onAmend={onAmend}
 				onAdd={onAdd}
 				modal={modal}
+				onEdit={onEdit}
+				onChange={onChange}
 			></TodoList>
 
 		</TodoMainWrapper>
