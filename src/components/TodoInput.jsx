@@ -64,8 +64,8 @@ function TodoInput({ onAdd }) {
         placeholder='일정을 입력해주세요'
         value={value}
         onChange={handleChange}
-      ></InputText>
-      <InputTextButton type='submit' >저장</InputTextButton>
+      />
+      <InputTextButton type='submit'>저장</InputTextButton>
 		</InputWarrper>
 	);
 }

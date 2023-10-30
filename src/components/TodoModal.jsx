@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const TodoModalWrapper = styled.div`
@@ -13,6 +13,8 @@ const TodoModalWrapper = styled.div`
   padding: 10px;
   box-sizing: border-box;
   position: fixed;
+  top: 250px;
+  left: 21%;
 `;
 
 const TodoModalTop = styled.div`
@@ -33,20 +35,59 @@ const TodoModalContent = styled.div`
 `;
 
 const TodoModalTitle = styled.input`
+  width: 70%;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  padding-left: 10px;
+  background-color: transparent;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s; 
+
+  &:focus {
+    background-color: transparent;
+    border-bottom: 2px solid #fdaaaa;
+  }
+`;
+
+const CloseButton = styled.button`
 
 `;
 
 function TodoModal(props) {
-  console.log(props); 
 
-  const { todoList:{id, text, date, checked}, setOnModal, onModal, onAmend } = props;
+  const { id, text, date, checked, onAmend, modal, handleModal, onModal } = props;
+  const [amendText, setAmendText] = useState('');
+
+  useEffect(() => {
+    setAmendText( modal && modal[0].text);
+  }, [modal]);
+
+  // const handleChange = () => {
+  //   setAmendText( modal && modal[0].text);
+  // };
+
+  // const [ onModal, setOnModal] = useState(true);
+
+	// const handleModal = () => {
+	// 	setOnModal(false);
+	// };
+
+  const handleSubmit = (e) => {
+    e.prventDefault();
+  };
+
+
 
   return (
-    <TodoModalWrapper>
+    <TodoModalWrapper onSubmit={handleSubmit}>
       <TodoModalTop>
-        <p className='top-title'>내용 수정하기</p>
+        <p className='top-title'>수정하기</p>
       </TodoModalTop>
-      <TodoModalTitle>{text}</TodoModalTitle>
+      <TodoModalContent>
+        <TodoModalTitle value={amendText} />
+      </TodoModalContent>
+      <CloseButton type='submit' onClick={handleModal}>저장</CloseButton>
     </TodoModalWrapper>
   );
 }

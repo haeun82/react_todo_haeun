@@ -69,9 +69,8 @@ const Remove = styled.div`
 `;
 
 function TodoListItem(props) {
-	console.log(props);
 
-  const { todoList:{id, text, date, checked}, onRemove, onCheck, onAmend } = props;
+  const { todoList:{id, text, date, checked}, onRemove, onCheck, onAmend, onAdd, modal } = props;
 	const [ onModal, setOnModal] = useState(false);
 
 	const handleModal = () => {
@@ -87,10 +86,20 @@ function TodoListItem(props) {
 				{text}
 				<DateText>{date}</DateText>
 			</Text>
-      <ChangeContent  onClick={handleModal}>
+      <ChangeContent onClick={handleModal}>
         <MdCreate/>
+				{onModal && <TodoModal 
+					onAdd={onAdd} 
+					onAmend={onAmend} 
+					id={id} 
+					text={text} 
+					date={date} 
+					checked={checked} 
+					modal={modal} 
+					handleModal={handleModal}
+					onModal={onModal}
+				/>}
       </ChangeContent>
-				{onModal && <TodoModal />}
       <Remove onClick={() => { onRemove(id) }}>
         <MdRemoveCircleOutline />
       </Remove>

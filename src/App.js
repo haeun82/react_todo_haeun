@@ -83,9 +83,10 @@ function App() {
   };
 
   // 수정버튼
-  const [ Modal, setModal ] = useState(false);
+  const [ modal, setModal ] = useState('');
   const handleAmend = (id) => {
     setModal(todoLists.filter(todoList => todoList.id === id));
+    console.log(setModal);
   };
 
   return (
@@ -93,11 +94,12 @@ function App() {
       <GlobalStyle />
       <MainTitleText>TODO LIST📌</MainTitleText>
       <MainPage 
-      todoLists={todoLists} 
-      onAdd={handleAdd} 
-      onRemove={handleRemove} 
-      onCheck={handleCheckBox} 
-      onAmend={handleAmend}
+        todoLists={todoLists} 
+        onAdd={handleAdd} 
+        onRemove={handleRemove} 
+        onCheck={handleCheckBox} 
+        onAmend={handleAmend}
+        modal={modal}
       />
     </>
     

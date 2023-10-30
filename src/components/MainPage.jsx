@@ -18,15 +18,17 @@ const TodoMainWrapper = styled.div`
 
 
 function MainPage(props) {
-  const { todoLists, onAdd, onRemove, onCheck, onAmend } = props;
+  const { todoLists, onAdd, onRemove, onCheck, onAmend, modal } = props;
 	return (
 		<TodoMainWrapper>
 			<TodoInput onAdd={onAdd}></TodoInput>
       <TodoList 
-	  	todoLists={todoLists} 
-		onRemove={onRemove} 
-		onCheck={onCheck}
-		onAmend={onAmend}
+				todoLists={todoLists} 
+				onRemove={onRemove} 
+				onCheck={onCheck}
+				onAmend={onAmend}
+				onAdd={onAdd}
+				modal={modal}
 		></TodoList>
 		</TodoMainWrapper>
 	);

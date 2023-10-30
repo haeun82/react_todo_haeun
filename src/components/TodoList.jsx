@@ -15,12 +15,20 @@ const TodoListWrapper = styled.div`
 // `;
 
 function TodoList(props) {
-  const { todoLists, onRemove, onCheck, onAmend } = props;
+  const { todoLists, onRemove, onCheck, onAmend , onAdd, modal } = props;
   console.log(todoLists);
   return (
     <TodoListWrapper>
       {todoLists.map((todoList, index) => {
-        return <TodoListItem key={todoList.id} todoList={todoList} onRemove={onRemove} onCheck={onCheck} onAmend={onAmend} />
+        return <TodoListItem 
+        key={todoList.id} 
+        todoList={todoList} 
+        onRemove={onRemove} 
+        onCheck={onCheck} 
+        onAmend={onAmend} 
+        onAdd={onAdd}
+        modal={modal}
+        />
       })}
     </TodoListWrapper>
   );
