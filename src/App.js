@@ -28,6 +28,8 @@ const MainTitleText = styled.p`
 `;
 
 
+
+
 function App() {
   const today = new Date();
   const nowYear = today.getFullYear();
@@ -144,10 +146,7 @@ function App() {
         onAdd={handleAdd} 
         onRemove={handleRemove} 
         onCheck={handleCheckBox} 
-        // onAmend={handleAmend}
-        // modal={modal}
         onEdit={handleEdit}
-				// onClick={handleChangeText}
         editTodo={editTodo}
         onModal={handleOpenModal}
         />
@@ -156,10 +155,9 @@ function App() {
 			<TodoModal
         onCloseModal={handleCloseModal}
         onEdit={handleEdit}
-      
       >
-				<input type="text" value={editTodo.text} onChange={handleChange} />
-        </TodoModal> }
+				<input type="text" value={editTodo.text} onChange={handleChange} className='modal_input' />
+      </TodoModal> }
     </>
     
   );

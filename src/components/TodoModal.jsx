@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
+import swal from 'sweetalert';
 
 
 // const TodoModalWrapper = styled.div`
@@ -71,8 +72,8 @@ const Background = styled.div`
 `;
 
 const ModalContainer = styled.div`
-  width: 25rem;
-  background: #f1f1f1;
+  width: 30rem;
+  background: #fff;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.15);
   border-radius: 6px;
   overflow-y: overlay;
@@ -86,12 +87,13 @@ const ModalContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0.75rem;
+    background: #fdaaaa;
   }
-
-  hr {
-    margin: 0;
-    border: 0.5px solid #ccc;
-  }
+    .modal-title {
+      font-weight: bold;
+      text-align: center;
+      color: #fff;
+    }
 
   .body {
     padding: 1.25rem;
@@ -105,6 +107,17 @@ const ModalContainer = styled.div`
     align-items: center;
     padding: 10px 20px;
   }
+    button {
+      font-size: 18px;
+      padding: 3px 10px;
+      background: #fdaaaa;
+      outline: none;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      /* font-weight: bold; */
+    }
 `;
 
 
@@ -126,8 +139,14 @@ function TodoModal(props) {
     
   // };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-
+    if (!children) {
+      swal('수정 내용 필요');
+      return
+    }
+  };
 
   return (
     // <TodoModalWrapper onSubmit={handleSubmit} >
@@ -152,15 +171,15 @@ function TodoModal(props) {
 
 
     <Background>
-      <ModalContainer>
+      <ModalContainer onChange={handleSubmit}>
         <div className="header">
-          <span className="modal-title">{title}</span>
+          <span className="modal-title">일정 수정하기</span>
           <MdClose onClick={onCloseModal} />
         </div>
-        <hr />
+        {/* <hr /> */}
         <div className="body">{children}</div>
         <div className="footer">
-          <button onClick={onEdit}>확인</button>
+          <button onClick={onEdit} type='submint'>확인</button>
         </div>
       </ModalContainer>
     </Background>

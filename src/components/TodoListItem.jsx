@@ -87,9 +87,8 @@ const handleModal = () => {
 				{text}
 				<DateText>{date}</DateText>
 			</Text>
-      <ChangeContent onClick={handleModal}>
+      <ChangeContent>
         <MdCreate  onClick={() => { onModal(id); }}/>
-				
       </ChangeContent>
       <Remove onClick={() => { onRemove(id) }}>
         <MdRemoveCircleOutline />

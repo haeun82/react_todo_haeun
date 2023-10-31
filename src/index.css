@@ -22,3 +22,19 @@ code {
 .swal-button:active {
   background-color: #fc9c9c;
 }
+
+.modal_input {
+  width: 70%;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  padding-left: 10px;
+  background-color: transparent;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s; 
+}
+
+.modal_input:focus {
+  background-color: transparent;
+  border-bottom: 2px solid #fdaaaa;
+}

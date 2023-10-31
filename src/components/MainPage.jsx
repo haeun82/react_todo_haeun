@@ -16,11 +16,6 @@ const TodoMainWrapper = styled.div`
   box-sizing: border-box;
 `;
 
-const ListTop = styled.div`
-	width: 100%;
-	background: #000;
-
-`;
 
 
 function MainPage(props) {
@@ -32,7 +27,6 @@ function MainPage(props) {
 				todoLists={todoLists} 
 				onRemove={onRemove} 
 				onCheck={onCheck}
-				// onAmend={onAmend}
 				onAdd={onAdd}
 				modal={modal}
         onEdit={onEdit}
@@ -40,6 +34,7 @@ function MainPage(props) {
         editTodo={editTodo}
         onModal={onModal}
 			></TodoList>
+
 
 		</TodoMainWrapper>
 	);
