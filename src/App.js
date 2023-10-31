@@ -59,7 +59,12 @@ function App() {
   ]);
 
   useEffect(() => {
-    localStorage.getItem('todoLists', JSON.stringify(todoLists));
+    const dbTodoLists = JSON.parse(localStorage.getItem('todoLists')) || [];
+    setTodoLists(dbTodoLists);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('todoLists', JSON.stringify(todoLists));
   }, [todoLists]);
 
   // 추가

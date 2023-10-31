@@ -86,12 +86,18 @@ const ModalContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem;
+    padding: 0.5rem;
     background: #fdaaaa;
   }
     .modal-title {
       font-weight: bold;
       text-align: center;
+      color: #fff;
+    }
+
+    .close {
+      font-size: 25px;
+      font-weight: bold;
       color: #fff;
     }
 
@@ -114,9 +120,8 @@ const ModalContainer = styled.div`
       outline: none;
       cursor: pointer;
       border: none;
-      border-radius: 10px;
+      border-radius: 5px;
       color: #fff;
-      /* font-weight: bold; */
     }
 `;
 
@@ -174,7 +179,7 @@ function TodoModal(props) {
       <ModalContainer onChange={handleSubmit}>
         <div className="header">
           <span className="modal-title">일정 수정하기</span>
-          <MdClose onClick={onCloseModal} />
+          <MdClose onClick={onCloseModal} className='close'/>
         </div>
         {/* <hr /> */}
         <div className="body">{children}</div>

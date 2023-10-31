@@ -16,24 +16,28 @@ const TodoListWrapper = styled.div`
 
 function TodoList(props) {
   const { todoLists, onRemove, onCheck,  onAdd, modal, onEdit, onClick, editTodo, onModal } = props;
-  console.log(todoLists);
+
+  // const activeTodoList = todoLists.filter(todoList => todoList.checked === false);
+  // const DoneTodoList = todoLists.filter(todoList => todoList.checked === true );
+
   return (
     <TodoListWrapper>
-      {todoLists.map((todoList, index) => {
+      {todoLists.map((todoList) => {
         return <TodoListItem 
         key={todoList.id} 
         todoList={todoList} 
         onRemove={onRemove} 
         onCheck={onCheck} 
-        // onAmend={onAmend} 
         onAdd={onAdd}
         modal={modal}
         onEdit={onEdit}
-        // onClick={onClick}
         editTodo={editTodo}
         onModal={onModal}
         />
       })}
+      {/* {activeTodoList.map(() => {
+        return <TodoListItem />
+      })} */}
     </TodoListWrapper>
   );
 }
